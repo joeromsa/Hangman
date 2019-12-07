@@ -7,6 +7,12 @@
 #define VERT '|'
 #define HORZ '_'
 
+const int size = 10;
+const char *four[10] = {"CATS", "SLAP", "CLAW", "PUSH", "FORD", "IPAD", "BEER", "MILK", "FIRE", "DOGS"};
+const char *five[10] = {"KITTY", "CABLE", "FLAME", "TREES", "STACK", "ARRAY", "PEPSI", "MORTY", "LOOSE", "SANDY"};
+const char *six[10] = {"PARKER", "BANANA", "ROCKET", "QUEUES", "LOTION", "TWELVE", "COUGAR", "LIGHTS", "SWORDS", "SWITCH"};
+const char *eight[10] = {"ABSOLUTE", "TRACTORS", "FIREFLYS", "PEACOCKS", "BLANKETS", "RECLINERS", "PENGUINS", "EYEBROWS", "FIREWORK", "KEYBOARD"};
+const char *ten[10] = {"PINEAPPLES", "SEMITRUCKS", "LIGHTHOUSE", "HANDWARMER", "THUMBTACKS", "SAXOPHONES", "TAMBORINES", "BASKETBALL", "CHARLESTON", "INTESTINES"};
 
 void createPlayingSpace(char *pSpace) {
 
@@ -94,8 +100,10 @@ void setWordSize(char *pSpace) {
 
 int main() {
 	char pSpace[300];
+
 	createPlayingSpace(&pSpace[0]);
 	setWordSize(&pSpace[0]);
 	printPlayingSpace(&pSpace[0]);
+
 	return 0;
 }
