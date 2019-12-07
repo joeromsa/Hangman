@@ -46,9 +46,56 @@ void printPlayingSpace(const char *pSpace) {
 	printf("\n");
 }
 
+int setDif() {
+	int dif;
+
+	printf("Enter difficulty level (1-5):\n");
+	scanf("%d", &dif);
+
+	if (dif < 1 || dif > 5) {
+		printf("Your game has been set to hard for trying to be difficult.\n");
+		dif = 5;
+	}
+	else {
+		printf("Your game difficulty has been set to %d. Good luck.\n", dif);
+	}
+
+	return dif;
+}
+
+void setWordSize(char *pSpace) {
+	int dif = setDif();
+
+	pSpace[228] = HORZ;
+	pSpace[230] = HORZ;
+	pSpace[232] = HORZ;
+	pSpace[234] = HORZ;
+	
+	switch (dif) {
+		case 2: pSpace[236] = HORZ;
+			break;
+		case 3: pSpace[236] = HORZ;
+			pSpace[238] = HORZ;
+			break;
+		case 4: pSpace[236] = HORZ;
+			pSpace[238] = HORZ;
+			pSpace[240] = HORZ;
+			pSpace[242] = HORZ;
+			break;
+		case 5: pSpace[236] = HORZ;
+			pSpace[238] = HORZ;
+			pSpace[240] = HORZ;
+			pSpace[242] = HORZ;
+			pSpace[244] = HORZ;
+			pSpace[246] = HORZ;
+			break;
+	}
+}
+
 int main() {
 	char pSpace[300];
 	createPlayingSpace(&pSpace[0]);
+	setWordSize(&pSpace[0]);
 	printPlayingSpace(&pSpace[0]);
 	return 0;
 }
