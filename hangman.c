@@ -1,6 +1,6 @@
-
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 #define BOARD '~'
 #define SPACE ' '
@@ -8,6 +8,7 @@
 #define HORZ '_'
 
 const int size = 10;
+const char *word;
 const char *four[10] = {"CATS", "SLAP", "CLAW", "PUSH", "FORD", "IPAD", "BEER", "MILK", "FIRE", "DOGS"};
 const char *five[10] = {"KITTY", "CABLE", "FLAME", "TREES", "STACK", "ARRAY", "PEPSI", "MORTY", "LOOSE", "SANDY"};
 const char *six[10] = {"PARKER", "BANANA", "ROCKET", "QUEUES", "LOTION", "TWELVE", "COUGAR", "LIGHTS", "SWORDS", "SWITCH"};
@@ -69,7 +70,7 @@ int setDif() {
 	return dif;
 }
 
-void setWordSize(char *pSpace) {
+int setWordSize(char *pSpace) {
 	int dif = setDif();
 
 	pSpace[228] = HORZ;
@@ -96,14 +97,40 @@ void setWordSize(char *pSpace) {
 			pSpace[246] = HORZ;
 			break;
 	}
+
+	return dif; 
+}
+
+int random() {
+	int pos;
+
+	srand(time(NULL));
+
+	pos = 1 + rand() % 10;
+
+	return pos;
+}
+
+void buildGame() {
+	char pSpace[300];
+	createPlayingSpace(&pSpace[0]);
+	int dif = setWordSize(&pSpace[0]);
+	int pos = random();
+
+	switch (dif) {
+		case 1: word = four[pos]; break;
+		case 2: word = five[pos]; break;
+		case 3: word = six[pos]; break;
+		case 4: word = eight[pos]; break;
+		case 5: word = ten[pos]; break;
+	}
+
+	printPlayingSpace(&pSpace[0]);
+	
 }
 
 int main() {
-	char pSpace[300];
 
-	createPlayingSpace(&pSpace[0]);
-	setWordSize(&pSpace[0]);
-	printPlayingSpace(&pSpace[0]);
-
+	buildGame();
 	return 0;
 }
